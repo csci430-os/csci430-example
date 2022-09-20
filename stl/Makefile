@@ -25,7 +25,7 @@ sources = vector-example.cpp
 ##                 make ps02semaphorestrong explicitly to build that target.
 ##
 .PHONY : all
-all : vector-example queue-stack map-example
+all : vector-example queue-stack map-example priority-queue-example
 
 ## vector-example : Build and link together vector example
 ##
@@ -41,6 +41,12 @@ queue-stack : queue-stack.o
 ##
 map-example : map-example.o Process.o ProcessState.o
 	$(GCC) $(GCC_FLAGS) map-example.o Process.o ProcessState.o $(LINKS) -o $@
+
+
+## priority-queue-example    : Build and link together priority queue example
+##
+priority-queue-example : priority-queue-example.o Process.o ProcessState.o
+	$(GCC) $(GCC_FLAGS) priority-queue-example.o Process.o ProcessState.o $(LINKS) -o $@
 
 
 

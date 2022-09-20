@@ -14,17 +14,15 @@
  * causes a second thread to be created within the process.
  * This second thread runs the code found in the thread_function().
  */
- #include <pthread.h>
- #include <unistd.h>
- #include <cstdlib>
- #include <iostream>
+#include <cstdlib>
+#include <iostream>
+#include <pthread.h>
+#include <unistd.h>
 
 using namespace std;
 
-
 // global variables, accessible by and shared by all threads
 int myglobal = 0;
-
 
 /**
  * @brief thread functions
@@ -43,21 +41,17 @@ int myglobal = 0;
 void* thread_function(void* arg)
 {
   int i;
-  int j;
 
-  for (i = 0; i < 20; i++)
+  for (i = 0; i < 100000; i++)
   {
-    j = myglobal;
-    j = j + 1;
+    myglobal++;
     cout << ".";
     cout << flush; // flush output immediatly so we see true sequence of interleavings
-    sleep(1); // sleep for 1 second
-    myglobal = j;
+    // usleep(1000);  // sleep for 1 second
   }
 
   return NULL;
 }
-
 
 /**
  * @brief main entry
@@ -84,12 +78,12 @@ int main(int argc, char* argv[])
     abort();
   }
 
-  for (i = 0; i < 20; i++)
+  for (i = 0; i < 100000; i++)
   {
-    myglobal = myglobal + 1;
+    myglobal++;
     cout << "o";
-    cout << flush;  // flush output immediatly so we see true sequence of interleavings
-    sleep(1);  // sleep for 1 second
+    cout << flush; // flush output immediatly so we see true sequence of interleavings
+    // usleep(1000);  // sleep for 1 second
   }
 
   if (pthread_join(mythread, NULL))
