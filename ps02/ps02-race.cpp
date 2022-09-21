@@ -40,14 +40,16 @@ int myglobal = 0;
  */
 void* thread_function(void* arg)
 {
-  int i;
+  int i, j;
 
-  for (i = 0; i < 100000; i++)
+  for (i = 0; i < 25; i++)
   {
-    myglobal++;
+    j = myglobal;
+    j = j + 1;
     cout << ".";
     cout << flush; // flush output immediatly so we see true sequence of interleavings
-    // usleep(1000);  // sleep for 1 second
+    sleep(1);
+    myglobal = j;
   }
 
   return NULL;
@@ -78,12 +80,12 @@ int main(int argc, char* argv[])
     abort();
   }
 
-  for (i = 0; i < 100000; i++)
+  for (i = 0; i < 25; i++)
   {
     myglobal++;
     cout << "o";
     cout << flush; // flush output immediatly so we see true sequence of interleavings
-    // usleep(1000);  // sleep for 1 second
+    sleep(1);
   }
 
   if (pthread_join(mythread, NULL))
