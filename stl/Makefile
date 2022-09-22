@@ -67,6 +67,10 @@ beautify :
 clean  :
 	$(RM) vector-example queue-stack map *.exe *.o *.gch *~
 
+## unit-tests   : Test the stl example programs
+.PHONY : unit-tests
+unit-tests :
+	./map-example
 
 ## help         : Get all build targets supported by this build.
 ##
