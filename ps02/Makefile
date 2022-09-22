@@ -61,6 +61,12 @@ beautify :
 	$(BEAUTIFIER) $(BEAUTIFIER_FLAGS) $(sources)
 
 
+## unit-tests   : Run ps02 executables to test them
+.PHONY : unit-tests
+unit-tests :
+	./ps02
+
+	
 ## clean        : Remove auto-generated files for a completely
 ##                clean rebuild
 ##
