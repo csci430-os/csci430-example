@@ -1,0 +1,179 @@
+---
+title: "U01: Basic Computing Elements of a Hypothetical Machine Architecture"
+subtitle: "CSci 430: Operating Systems"
+author: Derek Harter
+date: Summer 2025
+theme: Madrid
+
+toc: false
+section-titles: false
+output:
+	beamer_presentation:
+	keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.18]{figures/tamuc-logo}}
+  - \title [Memory]{My Title}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{allcolors=blue, colorlinks=true}
+  - \usepackage[percent]{overpic}
+---
+
+# Basic Elements of a Computing System
+
+::: columns
+::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.11]{figures/ch01-1-basic-computer-components}
+\label{fig:ch01-1-basic-computer-components}
+\caption{Basic components of a stored-program computer (Von Neumann architecture). \parencite[pg.31]{stallings-2018}}
+\end{figure}
+::::
+:::: {.column width=50%}
+Four elements of a computing system:
+
+1. **Processor**: Controls the operation of the computer and performs data processing. 
+   **CPU** central processing unit. 
+2. **Main Memory**: Stores data and code.  Typically volatile memory.  **real memory**
+   or **primary memory**.
+3. **I/O Modules**: Move data between the computer and its external
+   environment. Communication devices like NICs, or secondary storage like hard disks.
+4. **System Bus**: Provides communication path between processors, main memory and I/O modules.
+::::
+:::
+
+# Instruction Execution (The Fetch/Execute Cycle)
+
+
+Instruction processing consists of two steps:
+
+  1. **Fetch next instruction**: The processor reads (**fetches**) one instruction from memory.
+  2. **Execute instruction**: The processor decodes the instruction and its arguments and **executes**
+     the indicated operation.
+
+
+\begin{figure}
+\includegraphics[scale=0.20]{figures/ch01-2-basic-instruction-cycle}
+\label{fig:ch01-2-basic-instruction-cycle}
+\caption{Basic fetch/execute instruction cycle for a hypothetical computer architecture. \parencite[pg.33]{stallings-2018}}
+\end{figure}
+
+# Characteristics of a Hypothetical Machine Architecture
+
+::: columns
+::: {.column width=50%}
+\begin{figure}
+\includegraphics[scale=0.16]{figures/ch01-3-hypothetical-machine-architecture}
+\label{fig:ch01-3-hypothetical-machine-architecture}
+\caption{Example of a simple hypothetical machine architecture. \parencite[pg.34]{stallings-2018}}
+\end{figure}
+::::
+:::: {.column width=50%}
+- Instructions and data are both 16-bits (16-bit architecture).
+- Instruction format (a) has 4 bit opcode, allows $2^4 = 16$ different opcodes.
+- `PC` register holds next memory address to **fetch** into `IR`
+- Opcode defines the operation to **execute**.
+  - `AC` register holds one operand 
+  - Remaining 12 bits $2^{12} = 4096$ (4K) are 2nd operand memory address
+- Machine only supports **signed integer** operations (b)
+  - Uses simple sign/magnitude format, 1 sign bit and 15 bits for magnitude
+::::
+:::
+
+# Hypothetical Machine Example Problems 1
+
+::: columns
+::: {.column width=70%}
+\begin{figure}
+\includegraphics[scale=0.18]{figures/ch01-hypothetical-machine-ex01}
+\label{fig:ch01-hypothetical-machine-ex01}
+\end{figure}
+::::
+:::: {.column width=30%}
+| Hex | Bin  | Opcode |
+|-----|------|--------|
+| 1   | 0001 | LOAD   |
+| 2   | 0010 | STOR   |
+| 3   | 0011 | MUL    |
+| 4   | 0100 | SUB    |
+| 5   | 0101 | ADD    |
+| 6   | 0110 | JMP    |
+| 7   | 0111 | JMPZ   |
+| 8   | 1000 | JMPN   |
+::::
+:::
+
+# Hypothetical Machine Example Problems 2
+
+::: columns
+::: {.column width=70%}
+\begin{figure}
+\includegraphics[scale=0.18]{figures/ch01-hypothetical-machine-ex02}
+\label{fig:ch01-hypothetical-machine-ex02}
+\end{figure}
+::::
+:::: {.column width=30%}
+| Hex | Bin  | Opcode |
+|-----|------|--------|
+| 1   | 0001 | LOAD   |
+| 2   | 0010 | STOR   |
+| 3   | 0011 | MUL    |
+| 4   | 0100 | SUB    |
+| 5   | 0101 | ADD    |
+| 6   | 0110 | JMP    |
+| 7   | 0111 | JMPZ   |
+| 8   | 1000 | JMPN   |
+::::
+:::
+
+# Hypothetical Machine Example Problems 3
+
+::: columns
+::: {.column width=70%}
+\begin{figure}
+\includegraphics[scale=0.18]{figures/ch01-hypothetical-machine-ex03}
+\label{fig:ch01-hypothetical-machine-ex03}
+\end{figure}
+::::
+:::: {.column width=30%}
+| Hex | Bin  | Opcode |
+|-----|------|--------|
+| 1   | 0001 | LOAD   |
+| 2   | 0010 | STOR   |
+| 3   | 0011 | MUL    |
+| 4   | 0100 | SUB    |
+| 5   | 0101 | ADD    |
+| 6   | 0110 | JMP    |
+| 7   | 0111 | JMPZ   |
+| 8   | 1000 | JMPN   |
+::::
+:::
+
+# Hypothetical Machine Example Problems 4
+
+::: columns
+::: {.column width=70%}
+\begin{figure}
+\includegraphics[scale=0.18]{figures/ch01-hypothetical-machine-ex04}
+\label{fig:ch01-hypothetical-machine-ex04}
+\end{figure}
+::::
+:::: {.column width=30%}
+| Hex | Bin  | Opcode |
+|-----|------|--------|
+| 1   | 0001 | LOAD   |
+| 2   | 0010 | STOR   |
+| 3   | 0011 | MUL    |
+| 4   | 0100 | SUB    |
+| 5   | 0101 | ADD    |
+| 6   | 0110 | JMP    |
+| 7   | 0111 | JMPZ   |
+| 8   | 1000 | JMPN   |
+::::
+:::
+
+# Bibliography
+\tiny
+\printbibliography

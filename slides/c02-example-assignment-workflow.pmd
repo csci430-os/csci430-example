@@ -1,0 +1,57 @@
+---
+title: "C02: Example Assignment Workflow w/ VSCode Dev Containers"
+subtitle: "ETAMU Class Assignments"
+author: Derek Harter
+date: Summer 2025
+theme: Madrid
+
+toc: false
+section-titles: false
+output:
+	beamer_presentation:
+	keep_tex: true
+classoption: aspectratio=169
+header-includes:
+  - \logo{\includegraphics[scale=0.18]{figures/tamuc-logo}}
+  - \title [Memory]{My Title}
+  - \institute[East Texas A\&M]{Department of Computer Science \\East Texas A\&M University}
+  - \usepackage[backend=biber, style=apa]{biblatex}
+  - \addbibresource{slides.bib}
+  - \hypersetup{allcolors=blue, colorlinks=true}
+  - \usepackage[percent]{overpic}
+---
+
+# Prerequisite Environment Setup
+
+Make sure that you have completed the instructions for 
+[Setting up git / Docker / VSCode DevContainters](https://github.com/etamu-class/vscode-docker-devcontainer)
+
+1. You need to have a GitHub account and have git installed and working
+   - You need to have generated an ssh key and can successfully authenticate
+     with it to  your GitHub account.
+2. You need to have Docker Desktop installed and `Engine running` for your containers.
+3. You need to have VSCode installed
+   - And have installed the Microsoft Remote Development / Dev Containers extensions
+
+# In This Video
+
+- Accepting GitHub Classroom assignments
+- Clone assignment repository and open in a DevContainer
+- Using VSCode 
+- Standard Assignment workflows
+- Example Practice Task 1 and Task 2
+- Compiling and Testing tasks
+- Making and pushing a commit for assignment grading
+- The GitHub repository Feedback Pull request
+
+
+# Additional 
+
+- Automatic code style checker / formatter
+- Using the VSCode Debugger for Assignments
+- Building the simulation and running system-tests
+
+
+# Bibliography
+\tiny
+\printbibliography

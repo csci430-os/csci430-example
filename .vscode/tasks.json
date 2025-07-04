@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "smake",
+            "type": "shell",
+            "command": "snakemake -c 1",
+            "args": [
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/slides"
+            },
+            "group": "build",
+            "presentation": {
+                "clear": true
+            }
+        },
+   ]
+}
