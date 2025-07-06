@@ -24,6 +24,7 @@ BIN_DIR := bin
 INC_DIR := include
 HELLO_TARGET=$(BIN_DIR)/hello-world
 IOSTRING_TARGET=$(BIN_DIR)/io-string
+TEST_TARGET=$(BIN_DIR)/test-mystatslib
 
 
 # sources and objects for executables
@@ -33,6 +34,9 @@ hello_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(hello_src))
 iostring_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(iostring_src))
 iostring_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(iostring_src))
 
+test_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(test_src))
+test_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(test_src))
+catch_test_obj := $(OBJ_DIR)/catch2-main.o
 
 # pdf files for assignment description documentation
 assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
@@ -42,7 +46,7 @@ assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
 ## all          : by default generate all executables
 ##
 .PHONY : all
-all : $(HELLO_TARGET) $(IOSTRING_TARGET)
+all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET)
 
 
 ## hello-world  : Build and link together the hello world executable
@@ -54,6 +58,12 @@ $(HELLO_TARGET) : $(hello_obj) | $(BIN_DIR)
 ##
 $(IOSTRING_TARGET) : $(iostring_obj) | $(BIN_DIR)
 	$(GCC) $(GCC_FLAGS) $(iostring_obj)  -o $@
+
+## test-mystatslib  : Build and link together the test-mystatslib
+##                    example executable
+##
+$(TEST_TARGET) : $(test_obj) $(catch_test_obj) | $(BIN_DIR)
+	$(GCC) $(GCC_FLAGS) $(test_obj) $(catch_test_obj)  -o $@
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
@@ -67,8 +77,8 @@ $(BIN_DIR):
 
 ## unit-tests   : Run the unit tests showing failing tests only
 ##
-#unit-tests : $(TEST_TARGET)
-#	./$(TEST_TARGET) --use-colour yes
+unit-tests : $(TEST_TARGET)
+	./$(TEST_TARGET) --use-colour yes
 
 ## system-tests : Run the system tests on the full simulation
 ##
@@ -106,9 +116,9 @@ $(assg_doc) : README.md
 ##
 .PHONY : clean
 clean  :
-	$(RM) $(HELLO_TARGET) *.o *.gch
+	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) *.o *.gch
 	$(RM) output html latex
-	$(RM) $(hello_obj)
+	$(RM) $(hello_obj) $(iostring_obj) $(test_obj)
 
 
 ## help         : Get all build targets supported by this build.

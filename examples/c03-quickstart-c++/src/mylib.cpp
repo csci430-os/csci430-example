@@ -1,4 +1,4 @@
-/** @file hello-world.cpp
+/** @file mylib.cpp
  *
  * @brief Example library / module of functions
  *

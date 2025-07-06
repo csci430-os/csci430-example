@@ -5,6 +5,9 @@ hello_src  = hello-world.cpp mylib.cpp
 
 iostring_src = io-string.cpp
 
+test_src = mystatslib.cpp \
+           test-mystatslib.cpp
+
 # assignment description documentation
 assg_doc  = ${PROJECT_NAME}.pdf
 

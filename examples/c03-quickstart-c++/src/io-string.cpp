@@ -28,7 +28,7 @@ using namespace std;
  *
  * Example main function.  All C/C++ programs have an entry point which is a
  * function with a specific special name, main.  In this example we
- * demonstrate how you can get command line arguments into the main funciton
+ * demonstrate how you can get command line arguments into the main function
  * of a C/C++ program.
  *
  * @param argc The command line argument count, the number of arguments
@@ -37,7 +37,7 @@ using namespace std;
  *   that is passed in holds one of the command line arguments provided
  *   by the user to the program when started.
  *
- * @returns int Returns 0 to indicate successfull completion of program,
+ * @returns int Returns 0 to indicate successful completion of program,
  *   and a non-zero value to indicate an error code.
  */
 int main(int argc, char** argv)
