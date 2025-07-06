@@ -9,7 +9,8 @@ PANDOC_LATEX_ARGS="-s -N"
 rule all:
 	input:  [\
 		"c02-example-assignment-workflow.pdf", \
-		"u01-basic-elements-hypothetical-machine.pdf", \
+		"c03-quickstart-c++-programming.pdf", \
+		"u01-1-basic-elements-hypothetical-machine.pdf", \
 	]
 
 rule pmd_to_md:

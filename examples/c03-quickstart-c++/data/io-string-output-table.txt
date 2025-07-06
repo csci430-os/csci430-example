@@ -1,0 +1,4 @@
+Employee name            Department              salary  age adjunct
+--------------------------------------------------------------------
+Derek Harter.............Computer_Science....___4830.30___42___false
+Jane Employee............Biology.............__19280.32___33___false
