@@ -8,6 +8,9 @@ iostring_src = io-string.cpp
 test_src = mystatslib.cpp \
            test-mystatslib.cpp
 
+process_src = Process.cpp \
+              test-Process.cpp
+
 # assignment description documentation
 assg_doc  = ${PROJECT_NAME}.pdf
 

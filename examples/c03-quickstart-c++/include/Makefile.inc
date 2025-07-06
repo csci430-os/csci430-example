@@ -25,6 +25,7 @@ INC_DIR := include
 HELLO_TARGET=$(BIN_DIR)/hello-world
 IOSTRING_TARGET=$(BIN_DIR)/io-string
 TEST_TARGET=$(BIN_DIR)/test-mystatslib
+PROCESS_TARGET=$(BIN_DIR)/test-process
 
 
 # sources and objects for executables
@@ -38,6 +39,10 @@ test_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(test_src))
 test_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(test_src))
 catch_test_obj := $(OBJ_DIR)/catch2-main.o
 
+process_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(process_src))
+process_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(process_src))
+
+
 # pdf files for assignment description documentation
 assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
 
@@ -46,7 +51,7 @@ assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
 ## all          : by default generate all executables
 ##
 .PHONY : all
-all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET)
+all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET)
 
 
 ## hello-world  : Build and link together the hello world executable
@@ -64,6 +69,12 @@ $(IOSTRING_TARGET) : $(iostring_obj) | $(BIN_DIR)
 ##
 $(TEST_TARGET) : $(test_obj) $(catch_test_obj) | $(BIN_DIR)
 	$(GCC) $(GCC_FLAGS) $(test_obj) $(catch_test_obj)  -o $@
+
+## test-process : Build and link together the test-process
+##                    example executable
+##
+$(PROCESS_TARGET) : $(process_obj) $(catch_test_obj) | $(BIN_DIR)
+	$(GCC) $(GCC_FLAGS) $(process_obj) $(catch_test_obj)  -o $@
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
@@ -116,9 +127,9 @@ $(assg_doc) : README.md
 ##
 .PHONY : clean
 clean  :
-	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) *.o *.gch
+	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) *.o *.gch
 	$(RM) output html latex
-	$(RM) $(hello_obj) $(iostring_obj) $(test_obj)
+	$(RM) $(hello_obj) $(iostring_obj) $(test_obj) $(process_obj)
 
 
 ## help         : Get all build targets supported by this build.
