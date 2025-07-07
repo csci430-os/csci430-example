@@ -11,6 +11,8 @@ test_src = mystatslib.cpp \
 process_src = Process.cpp \
               test-Process.cpp
 
+stl_sequence_src = stl-sequence-containers.cpp
+
 # assignment description documentation
 assg_doc  = ${PROJECT_NAME}.pdf
 

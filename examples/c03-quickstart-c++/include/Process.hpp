@@ -1,5 +1,5 @@
 /** @file Process.hpp
- * 
+ *
  * @brief Example class to hold Process information
  *
  * @author Derek Harter
@@ -11,9 +11,9 @@
  * Simple example of object oriented programming.  A class that holds
  * information about a Process running on and being managed by a
  * system.
- * 
+ *
  * The .hpp file should hold the declaration of the class (no functions should
- * be implemented here usually).  
+ * be implemented here usually).
  */
 #include <string>
 using namespace std;
@@ -34,7 +34,8 @@ typedef unsigned int Time;
 // Always use enumerated types instead of defining some integer mappings when you have
 // a variable that takes a discrete list of values like the process state does here.
 /// @brief Current process state.
-enum State {
+enum State
+{
   NEW,
   READY,
   RUNNING,
@@ -44,29 +45,37 @@ enum State {
 
 /**
  * @class Process
- * @brief Track information about processes in the system.  
- * 
+ * @brief Track information about processes in the system.
+ *
  * A class whose instance encapsulates all of the information
  * we need to manage and track running processes in our system.
  */
 class Process
 {
-  public:
-    Process(Pid pid, string command);
-    Pid getPid();
-    State getState();
-    Time getUsage();
-    string getCommand();
-    void setState(State newState);
-    void updateUsage(Time timeUsed);
+public:
+  // constructors and destructors
+  Process(Pid pid, string command);
+  ~Process();
+
+  // getter methods
+  Pid getPid();
+  State getState();
+  Time getUsage();
+  string getCommand();
+
+  // setter methods
+  void setState(State newState);
+  void updateUsage(Time timeUsed);
 
   // in general, to enforce encapsulation, all member variables should usually be
   // private member variables in object-oriented programming
-  private:
-    Pid pid;        /// The unique process identifier assigned when process is created
-    State state;    /// The current process state
-    Time usage;     /// Amount of cpu usage time currently used by the running process
-    string command; /// The command line string that invoked/forked the process
+private:
+  Pid pid;        /// The unique process identifier assigned when process is created
+  State state;    /// The current process state
+  Time usage;     /// Amount of cpu usage time currently used by the running process
+  string command; /// The command line string that invoked/forked the process
+
+  int* fileid; /// Example of dynamically allocated memory, array of file identifiers
 };
 
 #endif // MYLIB_HPP header guard

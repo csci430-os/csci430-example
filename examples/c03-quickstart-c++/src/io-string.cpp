@@ -27,9 +27,7 @@ using namespace std;
 /** @brief Main entry point
  *
  * Example main function.  All C/C++ programs have an entry point which is a
- * function with a specific special name, main.  In this example we
- * demonstrate how you can get command line arguments into the main function
- * of a C/C++ program.
+ * function with a specific special name, main.
  *
  * @param argc The command line argument count, the number of arguments
  *   provided by user on the command line.

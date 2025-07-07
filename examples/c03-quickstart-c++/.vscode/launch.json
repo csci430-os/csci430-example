@@ -5,35 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) sim debug session",
+            "name": "(gdb) debug session",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/sim",
-            "args": [
-                "100",
-                "simfiles/prog-01.sim"
-            ],
-            "stopAtEntry": true,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "(gdb) test debug session",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/test",
-            "args": [
-                "-s"
-            ],
+            "program": "${workspaceFolder}/bin/test-process",
+            "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
