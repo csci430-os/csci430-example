@@ -13,6 +13,8 @@ process_src = Process.cpp \
 
 stl_sequence_src = stl-sequence-containers.cpp
 
+stl_map_src = stl-map-containers.cpp
+
 # assignment description documentation
 assg_doc  = ${PROJECT_NAME}.pdf
 

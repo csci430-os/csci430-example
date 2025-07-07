@@ -27,6 +27,7 @@ IOSTRING_TARGET=$(BIN_DIR)/io-string
 TEST_TARGET=$(BIN_DIR)/test-mystatslib
 PROCESS_TARGET=$(BIN_DIR)/test-process
 STL_SEQUENCE_TARGET=$(BIN_DIR)/stl-sequence-containers
+STL_MAP_TARGET=$(BIN_DIR)/stl-map-containers
 
 
 # sources and objects for executables
@@ -46,6 +47,9 @@ process_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(process_src))
 stl_sequence_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(stl_sequence_src))
 stl_sequence_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(stl_sequence_src))
 
+stl_map_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(stl_map_src))
+stl_map_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(stl_map_src))
+
 
 # pdf files for assignment description documentation
 assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
@@ -55,7 +59,7 @@ assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
 ## all          : by default generate all executables
 ##
 .PHONY : all
-all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET)
+all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) $(STL_MAP_TARGET)
 
 
 ## hello-world  : Build and link together the hello world executable
@@ -85,6 +89,12 @@ $(PROCESS_TARGET) : $(process_obj) $(catch_test_obj) | $(BIN_DIR)
 ##
 $(STL_SEQUENCE_TARGET) : $(stl_sequence_obj) | $(BIN_DIR)
 	$(GCC) $(GCC_FLAGS) $(stl_sequence_obj)  -o $@
+
+## stl-map-containers : Build and link together the stl map containers
+##                    example executable
+##
+$(STL_MAP_TARGET) : $(stl_map_obj) | $(BIN_DIR)
+	$(GCC) $(GCC_FLAGS) $(stl_map_obj)  -o $@
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
@@ -137,9 +147,9 @@ $(assg_doc) : README.md
 ##
 .PHONY : clean
 clean  :
-	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) *.o *.gch
+	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) $(STL_MAP_TARGET) *.o *.gch
 	$(RM) output html latex
-	$(RM) $(hello_obj) $(iostring_obj) $(test_obj) $(process_obj) $(stl_sequence_obj)
+	$(RM) $(hello_obj) $(iostring_obj) $(test_obj) $(process_obj) $(stl_sequence_obj) $(stl_map_obj)
 
 ## help         : Get all build targets supported by this build.
 ##
