@@ -31,6 +31,9 @@ typedef unsigned int Pid;
 /// @brief  Usage times by processes in our system, like cpu usage.
 typedef unsigned int Time;
 
+/// @brief Priority level of a process
+typedef unsigned int Priority;
+
 // Always use enumerated types instead of defining some integer mappings when you have
 // a variable that takes a discrete list of values like the process state does here.
 /// @brief Current process state.
@@ -62,20 +65,22 @@ public:
   State getState();
   Time getUsage();
   string getCommand();
+  Priority getPriority();
 
   // setter methods
   void setState(State newState);
   void updateUsage(Time timeUsed);
+  void setPriority(Priority priority);
 
   // in general, to enforce encapsulation, all member variables should usually be
   // private member variables in object-oriented programming
 private:
-  Pid pid;        /// The unique process identifier assigned when process is created
-  State state;    /// The current process state
-  Time usage;     /// Amount of cpu usage time currently used by the running process
-  string command; /// The command line string that invoked/forked the process
-
-  int* fileid; /// Example of dynamically allocated memory, array of file identifiers
+  Pid pid;           /// The unique process identifier assigned when process is created
+  State state;       /// The current process state
+  Time usage;        /// Amount of cpu usage time currently used by the running process
+  string command;    /// The command line string that invoked/forked the process
+  Priority priority; /// The process scheduling priority
+  int* fileid;       /// Example of dynamically allocated memory, array of file identifiers
 };
 
 #endif // MYLIB_HPP header guard

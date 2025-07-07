@@ -28,6 +28,7 @@ TEST_TARGET=$(BIN_DIR)/test-mystatslib
 PROCESS_TARGET=$(BIN_DIR)/test-process
 STL_SEQUENCE_TARGET=$(BIN_DIR)/stl-sequence-containers
 STL_MAP_TARGET=$(BIN_DIR)/stl-map-containers
+STL_STACKS_QUEUES_TARGET=$(BIN_DIR)/stl-stacks-queues
 
 
 # sources and objects for executables
@@ -50,6 +51,9 @@ stl_sequence_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(stl_sequence_
 stl_map_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(stl_map_src))
 stl_map_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(stl_map_src))
 
+stl_stacks_queues_src := $(patsubst %.cpp, $(SRC_DIR)/%.cpp, $(stl_stacks_queues_src))
+stl_stacks_queues_obj := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(stl_stacks_queues_src))
+
 
 # pdf files for assignment description documentation
 assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
@@ -59,7 +63,7 @@ assg_doc := $(patsubst %.pdf, $(DOC_DIR)/%.pdf, $(assg_doc))
 ## all          : by default generate all executables
 ##
 .PHONY : all
-all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) $(STL_MAP_TARGET)
+all : $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) $(STL_MAP_TARGET) $(STL_STACKS_QUEUES_TARGET)
 
 
 ## hello-world  : Build and link together the hello world executable
@@ -95,6 +99,12 @@ $(STL_SEQUENCE_TARGET) : $(stl_sequence_obj) | $(BIN_DIR)
 ##
 $(STL_MAP_TARGET) : $(stl_map_obj) | $(BIN_DIR)
 	$(GCC) $(GCC_FLAGS) $(stl_map_obj)  -o $@
+
+## stl-stacks-queues : Build and link together the stl stack and 
+##                    queues adapters example executable
+##
+$(STL_STACKS_QUEUES_TARGET) : $(stl_stacks_queues_obj) | $(BIN_DIR)
+	$(GCC) $(GCC_FLAGS) $(stl_stacks_queues_obj)  -o $@
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
@@ -147,9 +157,9 @@ $(assg_doc) : README.md
 ##
 .PHONY : clean
 clean  :
-	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) $(STL_MAP_TARGET) *.o *.gch
+	$(RM) $(HELLO_TARGET) $(IOSTRING_TARGET) $(TEST_TARGET) $(PROCESS_TARGET) $(STL_SEQUENCE_TARGET) $(STL_MAP_TARGET) $(STL_STACKS_QUEUES_TARGET) *.o *.gch
 	$(RM) output html latex
-	$(RM) $(hello_obj) $(iostring_obj) $(test_obj) $(process_obj) $(stl_sequence_obj) $(stl_map_obj)
+	$(RM) $(hello_obj) $(iostring_obj) $(test_obj) $(process_obj) $(stl_sequence_obj) $(stl_map_obj) $(stl_stacks_queues_obj)
 
 ## help         : Get all build targets supported by this build.
 ##

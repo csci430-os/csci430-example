@@ -33,6 +33,7 @@ Process::Process(Pid pid, string command)
   // could also be done using initializer list
   state = NEW;
   usage = 0;
+  priority = 5; // default medium priority
 
   // example of dynamic memory, the most basic type of memory management is to create
   // memory needed by an instance in the constructor, and free it back up in the class
@@ -56,27 +57,6 @@ Process::~Process()
 {
   // deallocate the dynamically allocated block of file identifiers
   delete[] fileid;
-}
-
-/** @brief setter method for process state
- *
- * Since process member variables are private by design to enforce encapsulation,
- * we need to provide setter methods for internal state that want users of the
- * class to be able to change.
- *
- * This setter is simple, but in more complex objects we can enforce for example that
- * you can't make illegal state transistion (e.g. for a Process if the state is
- * currently BLOCKED), it cannot legally be changed back to a RUNNING state).
- * Also we can update any other state in a setter method when this state changes that
- * we need to.
- *
- * @param newState The new state to transition the process too.
- */
-void Process::setState(State newState)
-{
-  // just set the state, but we should add checks that the state transition
-  // is valid here in the future.
-  state = newState;
 }
 
 /** @brief getter method for process identifier
@@ -119,6 +99,19 @@ Time Process::getUsage()
   return usage;
 }
 
+/** @brief getter method for process priority
+ *
+ * This getter method gets and returns the current
+ * scheduling priority of this process.
+ *
+ * @returns Priority Returns the current process
+ *   scheduling priority.
+ */
+Priority Process::getPriority()
+{
+  return priority;
+}
+
 /** @brief getter method for process command
  *
  * Likewise any internal state that users of this class might need to know
@@ -134,6 +127,27 @@ string Process::getCommand()
   return command;
 }
 
+/** @brief setter method for process state
+ *
+ * Since process member variables are private by design to enforce encapsulation,
+ * we need to provide setter methods for internal state that want users of the
+ * class to be able to change.
+ *
+ * This setter is simple, but in more complex objects we can enforce for example that
+ * you can't make illegal state transistion (e.g. for a Process if the state is
+ * currently BLOCKED), it cannot legally be changed back to a RUNNING state).
+ * Also we can update any other state in a setter method when this state changes that
+ * we need to.
+ *
+ * @param newState The new state to transition the process too.
+ */
+void Process::setState(State newState)
+{
+  // just set the state, but we should add checks that the state transition
+  // is valid here in the future.
+  state = newState;
+}
+
 /** @brief Update amount of usage for process
  *
  * This method is used after a process has used cpu time,
@@ -146,4 +160,16 @@ string Process::getCommand()
 void Process::updateUsage(Time timeUsed)
 {
   usage += timeUsed;
+}
+
+/** @brief setter method for process priority
+ *
+ * Set the scheduling priority of this process.
+ *
+ * @param newPriority The new scheduling priority for this
+ *   process.
+ */
+void Process::setPriority(Priority newPriority)
+{
+  priority = newPriority;
 }
