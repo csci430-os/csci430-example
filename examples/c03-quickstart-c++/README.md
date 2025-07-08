@@ -39,3 +39,9 @@ The examples covered in this project include:
 
 The following are suggested online materials you may use to get more information and
 help about learning the basics and more advanced aspects of programming in C++:
+
+- [cplusplus.com Tutorials and Reference](https://cplusplus.com/) Has both some okish tutorials on C++
+  and a pretty good reference for C and C++ librarys, including STL.
+- [Programiz.com Introduction to C++](https://www.programiz.com/cpp-programming/getting-started) has
+  tutorials / courses you can pay for, but the free overviews are helpful quick starts for
+  people who know how to program to pick up modern C++ and the STL
